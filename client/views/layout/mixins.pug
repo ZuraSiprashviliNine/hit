@@ -1,0 +1,11 @@
+mixin footerList(which)
+  - for(var i = 0; i < constants.footer.menu[which].items.length; i++)
+    li.p-1.small.text-capitalize
+      a.text-light(href=constants.footer.menu[which].items[i].link)= keywords[language][constants.footer.menu[which].items[i].title] || constants.footer.menu[which].items[i].title
+
+mixin footerBlockList(which)
+  .col-lg-2.col-md-6.p-1
+    .h-100.d-flex.flex-column.align-items-lg-end
+      h4.mb-2.text-white.font-weight-bold.text-uppercase.m-0= keywords[language][constants.footer.menu[which].title] || constants.footer.menu[which].title
+      ul.mb-0.mt-2.list-unstyled.d-flex.flex-column
+        +footerList(which)

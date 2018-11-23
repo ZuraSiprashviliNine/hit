@@ -1,0 +1,180 @@
+
+@import 'functions';
+@import 'variables';
+
+$navbarHeight: 70px !global;
+$scrolledNavbarHeight: 50px !global;
+
+body{
+    letter-spacing: 1px;
+    background-color: $light;
+}
+
+.fa{
+    text-decoration: none !important;
+}
+
+header{
+    .navigation{
+        position: fixed;
+        transition: height 0.5s, background-color 0.5s;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 80;
+        height: $navbarHeight;
+        background-color: rgba(lighten($info, 1%), 0.7);
+        box-shadow: 0 0 40px 1px rgba($black, 0.1);
+
+        &-item{
+            height: $navbarHeight;
+        }
+
+        &-btn{
+            min-width: $navbarHeight;
+            height: $navbarHeight;
+            color: $white;
+            display: flex;;
+            flex-direction: column;;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: 0.5s;
+            transition: color 0;
+            padding: 5px 15px;
+
+            &:hover{
+                background-color: rgba(lighten($info, 10%), 0.7);
+                border-left-color: rgba($white, 0.1);
+                box-shadow: 0 0 8px 1px rgba($black, 0.1);
+            }
+        }
+
+        &-left-btn{
+            border-right-color: rgba($white, 0.1);
+        }
+        &-right-btn{
+            border-left-color: rgba($white, 0.1);
+        }
+
+        &-bars-btn{
+            .fa{
+                width: $navbarHeight / 2;
+                height: $navbarHeight / 2;
+                line-height: $navbarHeight / 2;
+            }
+            .text{
+                text-align: left;
+            }
+        }
+
+        &-center{
+            .logo{
+                text-decoration: none !important;
+                text-transform: uppercase;
+                color: $white;
+            }
+        }
+    }
+
+    .for-nav{
+        padding-top: $navbarHeight;
+        padding-bottom: $navbarHeight;
+    }
+
+    .after-nav{
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
+
+    .jumbotron{
+        margin: 0;
+        background-color: rgba($info, 0.3);
+        box-shadow: inset 0 0 240px 28px rgba(darken($info, 30%), 0.5);
+    }
+}
+
+#content{
+    margin-top: -$navbarHeight;
+    // padding-bottom: $navbarHeight;
+
+    &-col{
+        background-color: $white;
+        box-shadow: 0 0 40px 1px rgba($black, 0.1);
+        min-height: 100vh;
+    }
+}
+
+.subscribe{
+    background-image: url(https://freefrontend.com/assets/img/css-background-patterns/css3-gradient-pattern.png);
+    background-size: 70px 30px;
+    background-attachment: fixed;;
+    // background-repeat: no-repeat;
+    background-position: center;
+    margin-top: -$navbarHeight;
+    &-wrap{
+        background-color: rgba($white, 0.2);
+        padding: $navbarHeight * 2 0 $navbarHeight 0;
+    }
+    form{
+        .input-group{
+            position: relative;;
+            input{
+                border-radius: 20px !important;
+                border: 0;
+                box-shadow: 0 0 40px 1px rgba($black, 0.1);
+                text-transform: capitalize;
+            }
+            button{
+                position: absolute;;
+                top: 0;
+                z-index: 10;
+                right: 10px;
+                bottom: 0;
+                margin-left: auto;;
+                background-color: transition;
+                border: 0;
+            }
+        }
+    }
+}
+
+body{
+    &.scrolled{
+        .navigation{
+            height: $scrolledNavbarHeight;
+            background-color: $info;
+            &-item{
+                height: $scrolledNavbarHeight;
+            }
+            &-btn{
+                height: $scrolledNavbarHeight;
+            }
+        }
+    }
+}
+
+.products-top-swiper{
+    .swiper-slide{
+        &-bg-image{
+            background-size: 60%;
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+
+.products-side{
+    .item{
+        border-color: rgba($info, .1) !important;
+        &-image{
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    }
+}

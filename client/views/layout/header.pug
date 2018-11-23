@@ -1,0 +1,43 @@
+
+header
+    .navigation
+        .container-fluid
+            .row
+                .col-12.p-0
+                    .navigation-item.h-100.d-flex.flex-row
+                        .navigation-left.d-flex.flex-row.flex-fill
+                            btn#navigation-search-btn.navigation-search-btn.navigation-btn.navigation-left-btn
+                                span.fa.fa-search
+                            btn#navigation-bars-btn.navigation-bars-btn.d-flex.flex-row.align-items-center.navigation-left-btn.navigation-btn
+                                span.fa.fa-bars
+                                div.small.text-capitalize.text
+                                    div
+                                        = keywords[language]['new'] || 'new'
+                                    div
+                                        = keywords[language]['categories'] || 'categories'
+                        .navigation-center.flex-fill.d-flex.flex-row.align-items-center.justify-content-center
+                            a(href="/").logo.d-block.m-0.h4.font-weight-bold.text-uppercase= constants.site.name
+                        .navigation-right.flex-fill.d-flex.flex-row.justify-content-md-end
+                            btn#navigation-user-btn.navigation-user-btn.navigation-btn.navigation-right-btn
+                                span.fa.fa-user
+                            btn#navigation-favourites-btn.navigation-favourites-btn.navigation-btn.navigation-right-btn
+                                span.fa.fa-heart
+                            btn#navigation-cart-btn.navigation-cart-btn.navigation-btn.navigation-right-btn
+                                span.fa.fa-shopping-cart
+    .after-nav.bg-info(style=vars.page.image ? `background-image: url(${vars.page.image})` : '')
+        .jumbotron
+            .for-nav
+                .container
+                    .row
+                        .col-md-6.col-sm-8.col-10.p-1.offset-md-3.offset-1
+                            h1.text-white.text-center.m-0.text-capitalize.font-weight-bold
+                                = vars.page.title || constants.site.name
+                            - if(vars.page.bread)
+                                ul.list-unstyled.page-bread-ul.d-flex.flex-row.align-items.flex-wrap.justify-content-center.center.my-3.small.text-capitalize
+                                    - for(var i = 0; i < vars.page.bread.length; i++)
+                                        li.p-1.page-bread-li
+                                            a(href=vars.page.bread[i].link).text-light
+                                                = keywords[language][vars.page.bread[i].title] || vars.page.bread[i].title
+                                        - if(i !== vars.page.bread.length - 1)
+                                            li.p-1.text-white
+                                                = '|'
