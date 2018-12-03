@@ -1,10 +1,10 @@
 
 import Controller from '../controller';
 
-class Home extends Controller{
+class Products extends Controller{
   constructor(){
     super();
-    this.path = '/';
+    this.path = '/products';
     this.get = this.get.bind(this);
     this.act = this.act.bind(this);
 
@@ -13,7 +13,7 @@ class Home extends Controller{
   get(){
     return [
       (req, res, next) => {
-        res.end('hello');
+        res.end('products world');
       }
     ]
   }
@@ -28,4 +28,4 @@ class Home extends Controller{
   }
 }
 
-export default Home;
+export default Products;

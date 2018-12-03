@@ -2,6 +2,7 @@
 import express from 'express';
 import Events from 'events';
 import util from 'util';
+import mongoose from 'mongoose';
 
 import middlewares, {
   mapMiddlewares
@@ -26,6 +27,10 @@ const App = new Application({
 
 const ExpressRouter = express.Router();
 
+AppEmitter.on('db', () => {
+  util.log('db is ready to fuck');
+  AppEmitter.emit('make-it-rock');
+});
 AppEmitter.on('expressed', () => {
     util.log('App is Expressed');
 });
@@ -48,21 +53,39 @@ AppEmitter.on('set-sets', () => mapSets({sets, App, AppEmitter}));
 
 AppEmitter.on('set-routes', () => {
   let router = new Router({router: ExpressRouter});
-  let controllerAct;
+  let controllerAct,
+      controllerPath;
   Controllers.map(controller => {
     controllerAct = controller.inst.act();
+    controllerPath = controller.inst.getPath();
     controllerAct.map(act => {
-      router.addRoute({
-        method: act.method,
-        path: controller.inst.getPath(),
-        middleware: act.mid(),
-        callback: () => {
-          AppEmitter.emit('route', {
-            route: controller.inst.getPath(),
-            method: act.method
-          })
-        }
-      })
+      if(controllerPath.constructor === Array){
+        controllerPath.map(p => {
+          router.addRoute({
+            method: act.method,
+            path: p,
+            middleware: act.mid(),
+            callback: () => {
+              AppEmitter.emit('route', {
+                route: p,
+                method: act.method
+              })
+            }
+          });
+        })
+      }else if(controllerPath.constructor === String){
+        router.addRoute({
+          method: act.method,
+          path: controllerPath,
+          middleware: act.mid(),
+          callback: () => {
+            AppEmitter.emit('route', {
+              route: controllerPath,
+              method: act.method
+            })
+          }
+        })
+      }
     })
   })
   AppEmitter.emit('post-routes', router);
@@ -83,16 +106,32 @@ AppEmitter.on('post-run', () => {
     AppEmitter.emit('set-routes');
 });
 
-App.expressify({
-    callback: () => {
-        AppEmitter.emit('expressed');
-        App.run({
-            port: config.base.port,
-            host: config.base.host,
-            onListening: config.base.onListening,
-            callback: () => {
-                AppEmitter.emit('run');
-            }
-        });
+AppEmitter.on('make-it-rock', () => {
+  App.expressify({
+      callback: () => {
+          AppEmitter.emit('expressed');
+          App.run({
+              port: config.base.port,
+              host: config.base.host,
+              onListening: config.base.onListening,
+              callback: () => {
+                  AppEmitter.emit('run');
+              }
+          });
+      }
+  });
+})
+
+mongoose.connect(config.db.dsn({
+  username: config.db.username,
+  password: config.db.password,
+  database: config.db.database
+}), {
+    useNewUrlParser: true
+}, err => {
+    if(err){
+        throw err;
+    }else{
+      AppEmitter.emit('db');
     }
 });

@@ -40,7 +40,7 @@ export default [
     mid: () => sassMiddleware({
         src: config.sass.src.path,
         dest: config.sass.dest.path,
-        debug: false,
+        debug: true,
         outputStyle: 'compressed',
     }),
     what: 'node-sass-middleware'

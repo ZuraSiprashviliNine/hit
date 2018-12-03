@@ -1,7 +1,10 @@
 
 @import '../bootstrap/functions';
 @import '../bootstrap/variables';
+@import './normalize';
+
+$navbarHeight: 69px;
 
 body{
-  background-color: $dark;
+  font-family: 'Open sans', sans-serif;
 }
