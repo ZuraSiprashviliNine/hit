@@ -1,0 +1,196 @@
+
+@import '../bootstrap/functions';
+@import '../bootstrap/variables';
+
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: 1px;
+}
+
+$themeColor: $info;
+
+.button{
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    &:focus{
+        outline: none;
+    }
+}
+
+.container{
+    &-fluid >.row >div, >.row >div{
+        padding: 0 !important;
+    }
+}
+
+.input{
+    flex: 1;
+    padding: 10px 5px;
+    border-bottom: 2px solid rgba($themeColor, .9);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    color: rgba($dark, .9);
+    background-color: transparent;
+    text-transform: capitalize;
+    transition: padding 0.5s, border-color 0.3s;
+
+    &.password{
+        text-transform: none !important;
+    }
+
+    $label: null;
+
+    &-wrap{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        transition: padding 0.5s;
+
+        &.filled{
+            padding-top: 30px;
+            .input{
+                outline: 0 !important;
+                padding-left: 25px;
+                border-color: $themeColor;
+                &-label{
+                    top: -30px;
+                    left: 0;
+                    padding: 0 5px;
+                }
+            }
+        }
+
+        &:focus-within{
+            @extend .filled;
+        }
+    }
+    
+    &-label{
+        $label: &;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 15px;
+        font-size: 12px;
+        color: $muted;
+        text-transform: capitalize;
+        pointer-events: none;
+        
+        transition: 0.5s, padding 1s;
+    }
+}
+
+.page{
+    position: relative;
+    &.login, &#login{
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .page-back-face{
+            min-height: 45vh;
+            background-color: $themeColor;
+            box-shadow: inset 0 0 140px 20px rgba($black, .1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+        .login{
+            &-forget{
+                text-transform: capitalize;
+                font-size: 12px;
+                color: $muted;
+                text-decoration: none;
+
+                &-wrap{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-end;
+                }
+            }
+            &-footer{
+                color: $light;
+                background-color: $themeColor;
+                padding: 20px 15px;
+                text-align: center;
+            }
+            &-row{
+                padding: 20px 100px;
+                @media only screen and(max-width: $md){
+                    padding: 0;
+                }
+            }
+            &-inputs{
+                &-wrap{
+                    background-color: $white;
+                    box-shadow: 0 0 40px 3px rgba($black, .1);
+                    border-radius: 4px;
+                    padding: 10px;
+                }
+            }
+            &-input{
+                &-wrap{
+                    margin: 15px 0;
+                }
+            }
+            &-button{
+                &.button{
+                    cursor: pointer;
+                    display: block;
+                    background: $themeColor;
+                    width: 100%;
+                    padding: 15px 5px;
+                    color: $white;
+                    font-size: 18px;
+                    text-transform: capitalize;
+                    box-shadow: inset 0 0 80px 3px rgba($black, .1);
+                }
+            }
+            &-checkbox{
+                margin-left: 15px;
+                &-input{
+                    &-wrap{
+                        display: flex;
+                        flex-direction: row-reverse;
+                        justify-content: flex-end;
+                        align-items: center;
+                    }
+                }
+                &-label{
+                    margin-left: 10px;
+                    font-size: 12px;
+                    text-transform: capitalize;
+                    color: $muted;
+                }
+            }
+            &-form{
+                &-logo{
+                    font-family: 'Mountains of Christmas', sans-serif;
+                    font-size: 69px;
+                    text-transform: uppercase;
+                    text-align: center;;
+                    padding: 10px;
+
+                    @media only screen and(max-width: $sm){
+                        font-size: 49px;
+                    }
+                    
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

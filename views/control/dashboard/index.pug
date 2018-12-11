@@ -1,0 +1,8 @@
+
+extends ../../layout/index.pug
+
+block content
+    .page.login#login
+        form(action="/user/logout", method='post')
+            button(type="submit")
+                = 'logout'

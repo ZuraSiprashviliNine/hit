@@ -4,23 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js server --exec babel-node -e js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ZuraSiprashviliNine/hit.git"
+    "start": "nodemon server --exec babel-node -e js",
+    "pro": "node ./build/server/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ZuraSiprashviliNine/hit/issues"
-  },
-  "homepage": "https://github.com/ZuraSiprashviliNine/hit#readme",
-  "devDependencies": {
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.24.1"
-  },
   "dependencies": {
     "animate.css": "^3.7.0",
     "axios": "^0.18.0",
@@ -29,12 +18,20 @@
     "express": "^4.16.4",
     "jquery": "^3.3.1",
     "jsonwebtoken": "^8.4.0",
-    "mongoose": "^5.3.14",
+    "mongoose": "^5.3.15",
     "morgan": "^1.9.1",
     "node-sass-middleware": "^0.11.0",
-    "nodemon": "^1.18.7",
     "normalize.css": "^8.0.1",
-    "pug": "^2.0.3",
+    "striptags": "^3.1.1",
     "validator": "^10.9.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.18.7",
+    "pug": "^2.0.3"
   }
 }

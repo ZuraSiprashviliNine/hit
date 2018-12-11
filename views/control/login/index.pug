@@ -1,0 +1,40 @@
+
+extends ../../layout/index.pug
+
+block content
+    .page.login#login
+        .page-back-face
+        .something-useful
+        form(action="/user/login", method="post").login-form
+            .container-fluid
+                .row.login-row
+                    .col-xl-4.col-md-8.col-10.offset-1.offset-md-2.offset-xl-4
+                        .login-inputs-wrap
+                            .login-form-logo
+                                = 'hani.tech'
+                            .login-inputs.inputs
+                                .login-input-wrap.input-wrap
+                                    label(for="#login-email").input-label
+                                        = translate('your email address')
+                                    input(type="text").login-input.input#login-email(name="login-email")
+                                .login-input-wrap.input-wrap
+                                    label(for="#login-password").input-label
+                                        = translate('your password')
+                                    input(type="password").password.login-input.input#login-password(name="login-password")
+                                .login-input-wrap.login-checkbox-input-wrap
+                                    label(for="#login-remember").login-checkbox-label
+                                        = translate('remember me')
+                                    input(type="checkbox", name="login-remember")#login-remember.login-checkbox
+                                .login-input-wrap
+                                    button(type="submit").login-button.button
+                                        = translate('log in')
+                            .login-forget-wrap
+                                a(href="/user/forget").login-forget
+                                    = translate('forget password?')
+
+        .login-footer 
+            .container-fluid
+                .row
+                    .col-12
+                        .login-footer-copy
+                            != translate('&copy; 2018 hani.tech')
